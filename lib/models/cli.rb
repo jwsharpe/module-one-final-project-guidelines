@@ -15,6 +15,6 @@ def self.welcome_user(name)
     if User.check_user(name)
         puts "Welcome #{name}. Existing User "
     else
-        User.new(name)
+        User.new(name:name)
     end
 end
