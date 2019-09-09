@@ -1,6 +1,7 @@
 class Drawing < ActiveRecord::Base
   has_many :shapes
-
+  has_many :users, through: :user_drawing 
+  
   def open
     shapes.each { |shape|
       Square.new(
@@ -35,4 +36,5 @@ class Drawing < ActiveRecord::Base
       Gamepad.update_digital_output(event)
     end
   end
+  
 end
