@@ -10,20 +10,29 @@ class Drawing < ActiveRecord::Base
       )
     }
 
-    initialize_cursor
+    initialize_editor
 
-    on :controller_button_down do |event|
-      Gamepad.add_shape(event)
-    end
-
-    on :controller_axis do |event|
-      Gamepad.update_digital_output(event)
+    on :update do
+      Cursor.move(
+        x: gamepad.digital_output_x,
+        y: gamepad.digital_output_y,
+      )
     end
 
     Window.show
   end
 
-  def initialize_cursor
+  private def initialize_editor
     Cursor.new
+
+    on :controller_button_down do |event|
+      if (event.button)
+        Square.new(x: user.x, y: user.y, size: 40, color: "red")
+      end
+    end
+
+    on :controller_axis do |event|
+      Gamepad.update_digital_output(event)
+    end
   end
 end
