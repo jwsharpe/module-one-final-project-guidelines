@@ -11,9 +11,10 @@ def welcome_msg
 end
 
 def self.welcome_user(name)
-    if User.check_user(name)
+    if User.user_exist?(name)
         puts "Welcome #{name}. Existing User "
     else
+        puts "Creating New User"
         User.create(name: name)
     end
 end

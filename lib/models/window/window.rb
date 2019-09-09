@@ -11,12 +11,14 @@ class Window
           x: cursor.x,
           y: cursor.y,
           color: "red",
+          size: cursor.size,
         )
 
         Square.new(
           x: new_shape.x,
           y: new_shape.y,
           color: new_shape.color,
+          size: new_shape.size,
         )
       end
     end
@@ -41,6 +43,7 @@ class Window
         x: shape.x,
         y: shape.y,
         color: shape.color,
+        size: shape.size,
       )
     }
   end
