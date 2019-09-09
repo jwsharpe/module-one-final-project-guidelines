@@ -1,7 +1,6 @@
 class Cursor < Square
   def initialize
-    super
-    @sprite = Square.new(
+    super(
       x: (Window.width - 20) / 2 - 10,
       y: (Window.height - 20) / 2 - 10,
       size: 40,
