@@ -1,5 +1,5 @@
 require_relative "../config/environment"
-
 puts greeting
-Drawing.all.first.open
+require "pry"
+Binding.pry
 puts "HELLO WORLD"
