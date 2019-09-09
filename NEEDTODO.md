@@ -10,3 +10,7 @@
 * shape model
   * belongs to drawing
 
+---
+* drawing
+  * title
+  * can be public or private
