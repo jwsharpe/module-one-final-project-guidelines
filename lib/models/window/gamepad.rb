@@ -18,10 +18,6 @@ class Gamepad
     end
   end
 
-  #   def on_button_down(event)
-  #     case event
-  #     end
-  # end
   private def controller_value_to_integer_casting(analog)
     analog.abs > @deadzone ? (analog * @magnitude).round : 0
   end
