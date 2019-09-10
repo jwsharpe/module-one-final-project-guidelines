@@ -2,6 +2,8 @@ class Window
   def self.open(drawing)
     load_shapes(drawing)
 
+    set title: drawing.title
+
     cursor = Cursor.new
     gamepad = Gamepad.new
 

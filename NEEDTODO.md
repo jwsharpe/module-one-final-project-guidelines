@@ -14,3 +14,14 @@
 * drawing
   * title
   * can be public or private
+---
+
+* user
+  * self.check_exists?(user)
+  * #private_drawings
+  * #public_drawings
+* cli
+  * #display_projects
+  * #display_settings
+    * open project
+    * delete project
