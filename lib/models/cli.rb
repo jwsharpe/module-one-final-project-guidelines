@@ -111,7 +111,14 @@ def add_collaborator(drawing)
 end
 
 def prompt_collaborator
+    display_all_user
+    collaborator = gets.chomp
+    collaborator.to_i 
+    User.all.find_by(id: collaborator)
+end
+
+def display_all_user
     User.all.each_with_index do |user,index|
-        puts "#{index+1} -> #{user.name}."
-    end
+            puts "#{index+1} -> #{user.name}."
+        end
 end
