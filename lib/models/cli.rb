@@ -1,5 +1,3 @@
-require "pry"
-
 def run_program
   greeting # greet msg
   @@user = login # return user
@@ -42,12 +40,6 @@ def project_groups
   end
 end
 
-def privacy_option
-  puts "Choose option:"
-  puts "1. Private Project."
-  puts "2. Public Project."
-  puts "3. Collaborative"
-end
 
 def list_project(privacy_setting)
   if privacy_setting == "public"
@@ -73,19 +65,6 @@ def select_project(drawings, privacy_setting)
   end
 end
 
-def prompt_new_project(privacy_setting)
-  puts "Enter Title:"
-  new_title = gets.chomp
-  @@user.drawings.create(title: new_title, private: privacy_setting)
-end
-
-def print_list(list) #helper method to print list
-  list.each_with_index do |drawing, index|
-    puts "#{index + 1} -> #{drawing.title}"
-  end
-  puts "+ -> Create New Drawing"
-end
-
 def list_drawing_setting(drawing)
   puts "1 -> Open Project (Edit)"
   puts "2 -> Delete Project"
@@ -107,7 +86,7 @@ def list_drawing_setting(drawing)
 end
 
 def add_collaborator(drawing)
-    collab = prompt_collaborator 
+  collab = prompt_collaborator
 end
 
 def prompt_collaborator
