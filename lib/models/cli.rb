@@ -7,8 +7,6 @@ def run_program
     privacy_option
     user_privacy = gets.chomp 
     privacy(user_privacy, @@current_user)
-    setting_list
-    program_choice = gets.chomp
     
 end
 
@@ -50,20 +48,36 @@ end
 def private_project_list(current_user)
     puts "PRIVATE DRAWINGS:"
     print_list(current_user.private_drawings)
+    program_choice = gets.chomp
+    choosen_drawing = current_user.drawings[program_choice.to_i -1]
+    setting_list(choosen_drawing)
 end
 
 def public_project_list
     puts "PUBLIC DRAWINGS:"
     print_list(Drawing.public_drawings)
+    program_choice = gets.chomp
+    choosen_drawing = Drawing.public_drawings[program_choice.to_i -1]
+    setting_list(choosen_drawing)
 end
 
 def print_list(list) #helper method to print list
     list.each_with_index do |drawing,index|
         puts "#{index +1 } -> #{drawing.title}"
     end
-    puts "#{current_user.private_drawings.count + 1} -> Create New Drawing"
+    puts "#{list.count + 1} -> Create New Drawing"
 end
 
-def setting_list
-    puts ""
+def setting_list(choice)
+    puts "1 -> Open Prject (Edit)"
+    puts "2 -> Delete Prject"
+    case setting_choice 
+    when "1"
+        choice.open
+    when "2"
+        choice.destroy 
+    else
+        "Invalid Input!"
+    end
+
 end
