@@ -89,6 +89,7 @@ end
 def list_drawing_setting(drawing)
   puts "1 -> Open Project (Edit)"
   puts "2 -> Delete Project"
+  puts "3 -> Add Collaborative"
   program_choice = gets.chomp
   case program_choice
   when "1"
@@ -97,8 +98,20 @@ def list_drawing_setting(drawing)
   when "2"
     puts "Terminating Project :...."
     drawing.destroy
+  when "3"
+    add_collaborator(drawing)
   else
     puts "Invalid Input!"
     list_drawing_setting(drawing)
   end
+end
+
+def add_collaborator(drawing)
+    collab = prompt_collaborator 
+end
+
+def prompt_collaborator
+    User.all.each_with_index do |user,index|
+        puts "#{index+1} -> #{user.name}."
+    end
 end
