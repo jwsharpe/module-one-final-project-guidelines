@@ -1,5 +1,5 @@
 require_relative "../config/environment"
-greeting
+run_program
 require "pry"
 #Binding.pry
 #Shape.all.destroy_all

@@ -1,5 +1,5 @@
 require 'pry'
-def greeting
+def run_program
     @@current_user = nil
     login
     user_name = gets.chomp
@@ -7,6 +7,9 @@ def greeting
     privacy_option
     user_privacy = gets.chomp 
     privacy(user_privacy, @@current_user)
+    setting_list
+    program_choice = gets.chomp
+    
 end
 
 def login
@@ -36,7 +39,7 @@ def privacy(option,current_user)
     if option == "1" 
         private_project_list(current_user)
     elsif option == "2"
-        Drawing.public_drawings
+        public_project_list
     elsif option == "3"
         "Collaborative"
     else
@@ -45,12 +48,22 @@ def privacy(option,current_user)
 end
 
 def private_project_list(current_user)
-    current_user.private_drawings.each do |drawing|
-        puts drawing.title
-    end
-    puts "Create New Drawing"
+    puts "PRIVATE DRAWINGS:"
+    print_list(current_user.private_drawings)
 end
 
-def public_project_list(current_user)
-    
+def public_project_list
+    puts "PUBLIC DRAWINGS:"
+    print_list(Drawing.public_drawings)
+end
+
+def print_list(list) #helper method to print list
+    list.each_with_index do |drawing,index|
+        puts "#{index +1 } -> #{drawing.title}"
+    end
+    puts "#{current_user.private_drawings.count + 1} -> Create New Drawing"
+end
+
+def setting_list
+    puts ""
 end

@@ -7,8 +7,8 @@ class User < ActiveRecord::Base
   end
 
   def private_drawings
-    puts "Private Drawing"
-    self.drawings.where(private == true)
+    #puts "Private Drawing"
+    self.drawings.where(private: true)
   end
 
   def hello
