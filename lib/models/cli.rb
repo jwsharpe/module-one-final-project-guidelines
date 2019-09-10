@@ -1,28 +1,44 @@
 require 'pry'
 def run_program
-    @@current_user = nil
-    login
-    user_name = gets.chomp
-    self.welcome_user(user_name)
-    privacy_option
-    user_privacy = gets.chomp 
-    privacy(user_privacy, @@current_user)
+    greeting # greet msg
+    @@user = login # return user
+    privacy_setting = project_groups # return string e.i. "private"
+    drawings = list_project(privacy_setting) # return array of drawing
+    drawing = select_project(drawings,privacy_setting) # return a selected drawing
+    list_drawing_setting(drawing) 
     
 end
 
-def login
+def greeting
     puts "Welcome To Drawing Application"
     puts "==============================="
-    puts "LOGIN : Enter User Name"
+    
 end
-
-def self.welcome_user(name)
+def login
+    puts "LOGIN : Enter User Name"
+    name = gets.chomp 
+    current_user = nil
     if User.user_exist?(name)
-        @@current_user = User.find_by(name: name)
-        puts "Welcome #{name}. Existing User "
+        current_user = User.find_by(name: name)
+        puts "Welcome back, #{name}."
     else
         puts "Creating New User"
-        @@current_user = User.create(name: name)
+        current_user = User.create(name: name)
+        puts "Welcome #{name}."
+    end
+    current_user
+end
+
+def project_groups
+    privacy_option
+    option = gets.chomp
+    if option == "1" 
+        "private"
+    elsif option == "2"
+         "public"
+    else
+        puts "Invalid key!"
+        project_groups
     end
 end
 
@@ -33,51 +49,58 @@ def privacy_option
     puts "3. Collaborative"
 end
 
-def privacy(option,current_user)
-    if option == "1" 
-        private_project_list(current_user)
-    elsif option == "2"
-        public_project_list
-    elsif option == "3"
-        "Collaborative"
-    else
-        puts "Sorry! Wrong key enter"
+def list_project(privacy_setting)
+    if privacy_setting == "public"
+        Drawing.public_drawings
+    else privacy_setting == "private"
+        @@user.private_drawings
     end
 end
 
-def private_project_list(current_user)
-    puts "PRIVATE DRAWINGS:"
-    print_list(current_user.private_drawings)
+def select_project(drawings,privacy_setting)
+    puts "#{privacy_setting.upcase} PROJECTS"
+    print_list(drawings)
     program_choice = gets.chomp
-    choosen_drawing = current_user.drawings[program_choice.to_i -1]
-    setting_list(choosen_drawing)
+    if program_choice == "+"
+        prompt_new_project(privacy_setting)
+    elsif(program_choice.to_i)
+        if(drawings[program_choice.to_i-1])
+            drawings[program_choice.to_i-1]
+        else
+            select_project(drawings privacy_setting)
+        end
+    else
+        select_project(drawings privacy_setting)
+    end
 end
 
-def public_project_list
-    puts "PUBLIC DRAWINGS:"
-    print_list(Drawing.public_drawings)
-    program_choice = gets.chomp
-    choosen_drawing = Drawing.public_drawings[program_choice.to_i -1]
-    setting_list(choosen_drawing)
+def prompt_new_project(privacy_setting)
+    puts "Enter Title:"
+    new_title = gets.chomp
+    @@user.drawings.create(title: new_title, private: privacy_setting)
 end
+
 
 def print_list(list) #helper method to print list
     list.each_with_index do |drawing,index|
         puts "#{index +1 } -> #{drawing.title}"
     end
-    puts "#{list.count + 1} -> Create New Drawing"
+    puts "+ -> Create New Drawing"
 end
 
-def setting_list(choice)
-    puts "1 -> Open Prject (Edit)"
-    puts "2 -> Delete Prject"
-    case setting_choice 
+def list_drawing_setting(drawing)
+    puts "1 -> Open Project (Edit)"
+    puts "2 -> Delete Project"
+    program_choice = gets.chomp
+    case program_choice
     when "1"
-        choice.open
+        puts "Opening Project..."
+        drawing.open
     when "2"
-        choice.destroy 
+        puts "Terminating Project :...."
+        drawing.destroy 
     else
-        "Invalid Input!"
+        puts "Invalid Input!"
+        list_drawing_setting(drawing)
     end
-
 end

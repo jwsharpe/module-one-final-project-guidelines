@@ -16,11 +16,11 @@ class User < ActiveRecord::Base
   end
 
   def create_private_drawing(drawing_title)
-    self.drawing.create(title: drawing_title, private: true)
+    self.drawing.create(title: drawing_title, private: "private")
   end
 
   def create_public_drawing(drawing_title)
-    self.drawings.create(title: drawing_title, private: false)
+    self.drawings.create(title: drawing_title, private: "public")
   end
 
 

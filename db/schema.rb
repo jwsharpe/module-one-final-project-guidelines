@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190910135449) do
+ActiveRecord::Schema.define(version: 20190910201659) do
 
   create_table "drawings", force: :cascade do |t|
     t.string   "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean  "private"
+    t.string   "private"
   end
 
   create_table "shapes", force: :cascade do |t|

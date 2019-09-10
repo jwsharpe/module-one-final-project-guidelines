@@ -7,7 +7,7 @@ class Drawing < ActiveRecord::Base
   end
 
   def self.public_drawings
-    self.all.where(private: false)
+    self.all.where(private: "public")
   end
 
   def add_collaborator(user)
