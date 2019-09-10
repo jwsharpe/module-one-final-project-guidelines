@@ -5,4 +5,12 @@ class Drawing < ActiveRecord::Base
   def open
     Window.open(self)
   end
+
+  def self.public_drawings
+    self.all.where("private = 0")
+  end
+
+  def add_collaborator(user)
+    user.drawings << self
+  end
 end
