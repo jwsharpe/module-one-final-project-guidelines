@@ -1,11 +1,12 @@
+require 'pry'
 def greeting
-    current_user = nil
+    @@current_user = nil
     login
     user_name = gets.chomp
     self.welcome_user(user_name)
     privacy_option
     user_privacy = gets.chomp 
-    privacy(user_privacy, current_user)
+    privacy(user_privacy, @@current_user)
 end
 
 def login
@@ -16,10 +17,11 @@ end
 
 def self.welcome_user(name)
     if User.user_exist?(name)
+        @@current_user = User.find_by(name: name)
         puts "Welcome #{name}. Existing User "
     else
         puts "Creating New User"
-        current_user = User.create(name: name)
+        @@current_user = User.create(name: name)
     end
 end
 
@@ -32,10 +34,12 @@ end
 
 def privacy(option,current_user)
     if option = "1" 
-        current_user.
+        current_user.private_drawings
     elsif option = "2"
-        "list Public"
-    else  
+        Drawing.public_drawings
+    elsif option = "3"
+        "Collaborative"
+    else
         puts "Sorry! Wrong key enter"
     end
 end

@@ -1,6 +1,6 @@
-class User_Drawing < ActiveRecord::Base
+class UserDrawing < ActiveRecord::Base
     belongs_to :user 
     belongs_to :drawing 
 
-    
+
 end
