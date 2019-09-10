@@ -5,4 +5,6 @@ class Drawing < ActiveRecord::Base
   def open
     Window.open(self)
   end
+
+  
 end

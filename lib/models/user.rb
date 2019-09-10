@@ -6,4 +6,6 @@ class User < ActiveRecord::Base
         User.find_by_name(userName) != nil 
     end
 
+    
+
 end
