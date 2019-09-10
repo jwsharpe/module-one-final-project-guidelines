@@ -8,17 +8,21 @@ class User < ActiveRecord::Base
 
   def private_drawings
     puts "Private Drawing"
-    self.drawings
+    self.drawings.where(private == true)
   end
 
   def hello
     puts "checking method"
   end
 
-  def create_drawing(drawing_title)
-    new_drawing = Drawing.create(title: drawing_title)
-    UserDrawing.create(user_id: self.id, drawing_id: new_drawing.id)
+  def create_private_drawing(drawing_title)
+    self.drawing.create(title: drawing_title, private: true)
   end
+
+  def create_public_drawing(drawing_title)
+    self.drawings.create(title: drawing_title, private: false)
+  end
+
 
   def collaborative_drawings
   end

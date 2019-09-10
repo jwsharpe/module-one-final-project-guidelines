@@ -33,13 +33,24 @@ def privacy_option
 end
 
 def privacy(option,current_user)
-    if option = "1" 
-        current_user.private_drawings
-    elsif option = "2"
+    if option == "1" 
+        private_project_list(current_user)
+    elsif option == "2"
         Drawing.public_drawings
-    elsif option = "3"
+    elsif option == "3"
         "Collaborative"
     else
         puts "Sorry! Wrong key enter"
     end
+end
+
+def private_project_list(current_user)
+    current_user.private_drawings.each do |drawing|
+        puts drawing.title
+    end
+    puts "Create New Drawing"
+end
+
+def public_project_list(current_user)
+    
 end
