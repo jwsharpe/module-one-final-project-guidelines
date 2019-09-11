@@ -1,7 +1,5 @@
 require_relative "../config/environment"
-run_program
+app = Cli.new
+app.run_program
 require "pry"
-#Binding.pry
-#Shape.all.destroy_all
-#p Drawing.all.first.open
 ""
