@@ -10,11 +10,11 @@ def print_attribute_list(list, attr) #helper method to print list
   end
 end
 
-def print_privacy_options
+def print_privacy_options(user_status)
   puts "Choose option:"
   puts "1. Private Project"
   puts "2. Public Project"
-  puts "3. Collab Project"
+  puts "3. Collab Project" if user_status == false 
 end
 
 def prompt_new_project(privacy_setting)

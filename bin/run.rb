@@ -1,5 +1,6 @@
 require_relative "../config/environment"
-run_program
+app = CliRenderer.new 
+app.run_program
 require "pry"
 #Binding.pry
 #Shape.all.destroy_all
