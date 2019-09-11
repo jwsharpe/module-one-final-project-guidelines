@@ -115,4 +115,4 @@ class Cli
       prompt_collaborator
     end
   end
-end
+end # end of class
