@@ -19,8 +19,6 @@ class Window
         ShapeAdapter.build_shape_from_cursor(cursor, drawing)
         remove(cursor)
         add(cursor)
-      else
-        p event.button
       end
     end
 

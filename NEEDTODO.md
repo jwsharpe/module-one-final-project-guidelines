@@ -14,3 +14,6 @@
   * when login_scene returns "DONE"
     * SceneManager.next
 
+* Bug handling for new user.
+  * When a new user is created, there are no drawings.
+  * We try to reference no drawings.
