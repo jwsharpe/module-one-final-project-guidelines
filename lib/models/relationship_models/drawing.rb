@@ -14,4 +14,9 @@ class Drawing < ActiveRecord::Base
     user.drawings << self
     self.update(private: "collaborative")
   end
+
+  def collaborators 
+    self.all.where(private: "collaborative")
+  end
+
 end
