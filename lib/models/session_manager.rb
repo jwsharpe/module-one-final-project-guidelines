@@ -3,6 +3,7 @@ class SceneManager
   attr_reader :scenes
 
   def initialize
+    @session = Session.new
     @scenes = []
   end
 

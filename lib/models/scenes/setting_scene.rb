@@ -10,7 +10,7 @@ class SettingScene < Scene
 
     when "1"
       CliRenderer.print_header("Opening Projects...")
-      session.drawing.open
+      puts "PLEASE CALL THE SCENE MANAGER ON AISLE 5"
     when "2"
       CliRenderer.print_header("Terminating Projects...")
       session.drawing.destroy
