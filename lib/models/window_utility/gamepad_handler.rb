@@ -1,15 +1,15 @@
-class Gamepad
+class GamepadHandler
   attr_reader :digital_output_x, :digital_output_y
   attr_accessor :magnitude, :deadzone
 
-  def initialize(magnitude: 20, deadzone: 0.15)
+  def initialize(magnitude: 15, deadzone: 0.15)
     @digital_output_x = 0
     @digital_output_y = 0
     @magnitude = magnitude
     @deadzone = deadzone
   end
 
-  def update_digital_output(event)
+  def update_controller_axis_digital_output(event)
     case event.axis
     when :left_x
       @digital_output_x = controller_value_to_integer_casting(event.value)

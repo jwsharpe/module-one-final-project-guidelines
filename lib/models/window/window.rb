@@ -1,32 +1,31 @@
 class Window
   def self.open(drawing)
     load_shapes(drawing)
-
     set title: drawing.title
-
     cursor = Cursor.new
-    gamepad = Gamepad.new
+    gamepad = GamepadHandler.new
 
     on :controller_button_down do |event|
-      if (event.button)
-        new_shape = drawing.shapes.create(
-          x: cursor.x,
-          y: cursor.y,
-          color: "red",
-          size: cursor.size,
-        )
-
-        Square.new(
-          x: new_shape.x,
-          y: new_shape.y,
-          color: new_shape.color,
-          size: new_shape.size,
-        )
+      case event.button
+      when :start
+        Window.close
+      when :up
+        cursor.size += 20
+      when :down
+        cursor.size -= 20
+      when :y
+        cursor.cycle_color
+      when :a
+        ShapeAdapter.build_shape_from_cursor(cursor, drawing)
+        remove(cursor)
+        add(cursor)
+      else
+        p event.button
       end
     end
 
     on :controller_axis do |event|
-      gamepad.update_digital_output(event)
+      gamepad.update_controller_axis_digital_output(event)
     end
 
     update do
@@ -41,12 +40,7 @@ class Window
 
   def self.load_shapes(drawing)
     drawing.shapes.each { |shape|
-      Square.new(
-        x: shape.x,
-        y: shape.y,
-        color: shape.color,
-        size: shape.size,
-      )
+      ShapeAdapter.build(shape)
     }
   end
 end
