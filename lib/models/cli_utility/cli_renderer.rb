@@ -17,13 +17,9 @@ class CliRenderer
     puts "3. Collab Project"
   end
 
-  def self.prompt_new_project(session)
+  def self.prompt_new_project
     puts "Enter Title:"
     new_title = gets.chomp
-    session.user.drawings.create(
-      title: new_title,
-      private: session.privacy_setting,
-    )
   end
 
   def self.print_header(*texts)
@@ -36,5 +32,28 @@ class CliRenderer
 
   def self.print_invalid_input
     print_header("Invalid Input!")
+  end
+
+  def self.print_privacy_header(privacy)
+    puts "#{privacy} PROJECTS"
+    puts "^" * 90
+  end
+
+  def self.print_create_drawing
+    puts "+ -> Create New Drawing"
+  end
+
+  def self.prompt_user_name
+    puts "LOGIN : Enter User Name"
+    name = gets.chomp
+  end
+
+  def greet_returning_user(user)
+    puts "Welcome back, #{user}."
+  end
+
+  def greet_new_user(user)
+    puts "Creating New User"
+    puts "Welcome #{user}"
   end
 end

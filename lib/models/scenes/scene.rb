@@ -1,7 +1,7 @@
 class Scene
   attr_accessor :method, :session
 
-  def initialize
+  def initialize(session)
     @method = method
     @session = session
   end

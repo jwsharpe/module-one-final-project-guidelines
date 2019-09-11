@@ -22,6 +22,7 @@ class Cli
     session = projects_scene.run
     session = settings_scene.run
     session = collaborator_scene.run
+    binding.pry
 
     # session.drawing = select_project(drawings, session, util) # return a selected drawing
     # list_drawing_setting(session, util)
