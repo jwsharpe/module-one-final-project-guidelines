@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-    has_many :user_drawings
-    has_many :drawings, through: :user_drawings
+  has_many :user_drawings
+  has_many :drawings, through: :user_drawings
 
   def self.user_exist?(userName)
     User.find_by_name(userName) != nil
@@ -8,7 +8,11 @@ class User < ActiveRecord::Base
 
   def private_drawings
     #puts "Private Drawing"
-    self.drawings.where(private: true)
+    self.drawings.where(private: "private")
+  end
+
+  def collab_drawings
+    self.drawings.where(private: "collaborative")
   end
 
   def hello
@@ -21,9 +25,5 @@ class User < ActiveRecord::Base
 
   def create_public_drawing(drawing_title)
     self.drawings.create(title: drawing_title, private: "public")
-  end
-
-
-  def collaborative_drawings
   end
 end

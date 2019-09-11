@@ -31,10 +31,10 @@
 
 # CLI MINIMUM DONE
 * Collaboration (Higher priority)
-  * Need to add collaborators
-  * Need to add privacy setting: "collaborate"
-  * Add that to project menu
-  * Go back to project groups
+  * [x] Need to add collaborators
+  * [x] Need to add privacy setting: "collaborate" 
+  * [x] Add that to project menu 
+  * Go back to project groups 
   * Only owner can delete collaborative work
   * 
 

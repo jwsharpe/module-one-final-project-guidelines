@@ -12,5 +12,6 @@ class Drawing < ActiveRecord::Base
 
   def add_collaborator(user)
     user.drawings << self
+    self.update(private: "collaborative")
   end
 end

@@ -1,15 +1,10 @@
 def run_program
-  greeting # greet msg
+  print_greeting # greet msg
   @@user = login # return user
   privacy_setting = project_groups # return string e.i. "private"
   drawings = list_project(privacy_setting) # return array of drawing
   drawing = select_project(drawings, privacy_setting) # return a selected drawing
   list_drawing_setting(drawing)
-end
-
-def greeting
-  puts "Welcome To Drawing Application"
-  puts "==============================="
 end
 
 def login
@@ -30,12 +25,15 @@ def login
 end
 
 def project_groups
-  privacy_option
+  print_privacy_options
   option = gets.chomp
-  if option == "1"
+  case option
+  when "1"
     "private"
-  elsif option == "2"
+  when "2"
     "public"
+  when "3"
+    "collaborative"
   else
     puts "Invalid key!"
     project_groups
@@ -43,18 +41,24 @@ def project_groups
 end
 
 def list_project(privacy_setting)
-  if privacy_setting == "public"
+  case privacy_setting
+  when "public"
     Drawing.public_drawings
-  else privacy_setting == "private"
-    @@user.private_drawings   end
+  when "private"
+    @@user.private_drawings
+  when "collaborative"
+    @@user.collab_drawings
+  end
 end
 
 def select_project(drawings, privacy_setting)
   puts "#{privacy_setting.upcase} PROJECTS"
-  print_list(drawings)
-  puts "+ -> Create New Drawing"
+  print_attribute_list(drawings, :title)
+  if (privacy_setting != "collaborative")
+    puts "+ -> Create New Drawing"
+  end
   program_choice = gets.chomp
-  if program_choice == "+"
+  if program_choice == "+" && private_methods != "collaborative"
     prompt_new_project(privacy_setting)
   elsif (program_choice.to_i)
     if (drawings[program_choice.to_i - 1])
@@ -73,6 +77,7 @@ def list_drawing_setting(drawing)
   puts "3 -> Add Collaborative"
   program_choice = gets.chomp
   case program_choice
+
   when "1"
     puts "Opening Project..."
     drawing.open
