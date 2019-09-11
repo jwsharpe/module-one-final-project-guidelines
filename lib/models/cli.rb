@@ -16,6 +16,7 @@ def login
   puts "LOGIN : Enter User Name"
   name = gets.chomp
   current_user = nil
+
   if User.user_exist?(name)
     current_user = User.find_by(name: name)
     puts "Welcome back, #{name}."
@@ -24,6 +25,7 @@ def login
     current_user = User.create(name: name)
     puts "Welcome #{name}."
   end
+
   current_user
 end
 
@@ -40,7 +42,6 @@ def project_groups
   end
 end
 
-
 def list_project(privacy_setting)
   if privacy_setting == "public"
     Drawing.public_drawings
@@ -51,6 +52,7 @@ end
 def select_project(drawings, privacy_setting)
   puts "#{privacy_setting.upcase} PROJECTS"
   print_list(drawings)
+  puts "+ -> Create New Drawing"
   program_choice = gets.chomp
   if program_choice == "+"
     prompt_new_project(privacy_setting)
@@ -83,21 +85,4 @@ def list_drawing_setting(drawing)
     puts "Invalid Input!"
     list_drawing_setting(drawing)
   end
-end
-
-def add_collaborator(drawing)
-  collab = prompt_collaborator
-end
-
-def prompt_collaborator
-    display_all_user
-    collaborator = gets.chomp
-    collaborator.to_i 
-    User.all.find_by(id: collaborator)
-end
-
-def display_all_user
-    User.all.each_with_index do |user,index|
-            puts "#{index+1} -> #{user.name}."
-        end
 end
