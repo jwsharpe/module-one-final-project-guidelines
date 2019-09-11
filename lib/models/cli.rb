@@ -7,7 +7,7 @@ class Cli
     session.privacy_setting = project_groups(util) # return string e.i. "private"
     drawings = list_project(session) # return array of drawing'
     session.drawing = select_project(drawings, session,util) # return a selected drawing
-    list_drawing_setting(session)
+    list_drawing_setting(session,util)
   end
 
   def login
@@ -55,6 +55,7 @@ class Cli
 
   def select_project(drawings, session,util)
     puts "#{session.privacy_setting.upcase} PROJECTS"
+    puts "^" * 90
     util.print_attribute_list(drawings, :title)
     if (session.privacy_setting != "collaborative")
       puts "+ -> Create New Drawing"
@@ -67,56 +68,74 @@ class Cli
       if (drawings[program_choice.to_i - 1])
         drawings[program_choice.to_i - 1]
       else
+        puts "=" * 90
         puts "Choose Existing Project By Index!"
+        puts "=" * 90
         select_project(drawings, session,util)
       end
     else
+      puts "=" * 90
       puts "Enter Project Index Number!"
+      puts "=" * 90
       select_project(drawings, session,util)
     end
   end
 
-  def list_drawing_setting(session)
+  def list_drawing_setting(session,util)
+    puts "=" * 90
     puts "1 -> Open Project (Edit)"
     puts "2 -> Delete Project"
     puts "3 -> Add Collaborative"
+    puts "=" * 90
     program_choice = gets.chomp
     case program_choice
 
     when "1"
+      puts "=" * 90
       puts "Opening Project..."
+      puts "=" * 90
       session.drawing.open
     when "2"
+      puts "=" * 90
       puts "Terminating Project :...."
+      puts "=" * 90
       session.drawing.destroy
     when "3"
-      add_collaborator(session.drawing)
-      list_drawing_setting(session)
+      add_collaborator(session,util)
+      list_project(session)
     else
+      puts "=" * 90
       puts "Invalid Input!"
-      list_drawing_setting(session)
+      puts "=" * 90
+      list_drawing_setting(session,util)
     end
   end
 
-  def add_collaborator(session)
-    collab = prompt_collaborator
+  def add_collaborator(session,util)
+    collab = prompt_collaborator(util)
     session.drawing.add_collaborator(collab)
   end
 
-  def prompt_collaborator
-    print_attribute_list(User.all, :name)
+  def prompt_collaborator(util)
+    util.print_attribute_list(User.all, :name)
+    puts "=" * 90
     puts "Choose User By Index: "
+    puts "=" * 90
     collaborator = gets.chomp
 
     if (collaborator.to_i)
       if (User.all[collaborator.to_i - 1])
         User.all[collaborator.to_i - 1]
       else
+        puts "=" * 90
         puts "Invalid Input"
+        puts "=" * 90
         prompt_collaborator
       end
     else
+      puts "=" * 90
       puts "Invalid Input"
+      puts "=" * 90
       prompt_collaborator
     end
   end
