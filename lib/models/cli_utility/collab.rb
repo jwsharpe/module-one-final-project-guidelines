@@ -7,8 +7,7 @@ def add_collaborator(drawing)
       display_all_user
       collaborator = gets.chomp
       collab_int = collaborator.to_i 
-      collab_int_minus_one = collab_int - 1 
-      colab_id = collab_int_minus_one.to_s
+      colab_id = collab_int - 1 
       User.all.find_by(id: collab_id)
   end
 
