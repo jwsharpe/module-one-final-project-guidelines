@@ -67,13 +67,13 @@ class Cli
       puts "+ -> Create New Drawing"
     end
     program_choice = gets.chomp
-    if program_choice == "+" && private_methods != "collaborative"
+    if program_choice == "+" && private_setting != "collaborative"
       util.prompt_new_project(privacy_setting)
     elsif (program_choice.to_i)
       if (drawings[program_choice.to_i - 1])
         drawings[program_choice.to_i - 1]
       else
-        select_project(drawings privacy_setting)
+        select_project(drawings, privacy_setting)
       end
     else
       select_project(drawings,privacy_setting)
