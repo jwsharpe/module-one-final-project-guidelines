@@ -34,16 +34,16 @@
   * [x] Need to add collaborators
   * [x] Need to add privacy setting: "collaborate" 
   * [x] Add that to project menu 
-  * Go back to project groups 
+  * Aftrer addeding a collaborative, the user should go back to the project groups 
   * Only owner can delete collaborative work
-  * 
+
 
 * Go backwards in menu feature.
   * Go back to start
   * (stretch goal) If user types in '..' it'll go back one level.
   
 * user_drawing
-  * delete name variable when possible
+  * [x] delete name variable when possible
 
 * user
   * User_name sanitation (i.e. pongo && Pongo should be the same)

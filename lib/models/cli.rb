@@ -1,11 +1,20 @@
-class CliRenderer
+class Cli
   def run_program
-    print_greeting # greet msg
-    @@user = login # return user
-    privacy_setting = project_groups # return string e.i. "private"
-    drawings = list_project(privacy_setting) # return array of drawing
-    drawing = select_project(drawings, privacy_setting) # return a selected drawing
-    list_drawing_setting(drawing)
+    util = CliRenderer.new
+
+    util.print_greeting # greet msg
+
+    session = Session.new
+
+    session.user = login # return user
+
+    session.privacy_setting = project_groups # return string e.i. "private"
+
+    drawings = list_project(session.user, session.privacy_setting) # return array of drawing'
+
+    session.drawing = select_project(drawings, session.privacy_setting) # return a selected drawing
+
+    list_drawing_setting(session.drawing)
   end
 
   def login
@@ -14,11 +23,9 @@ class CliRenderer
     current_user = nil
 
     if User.user_exist?(name)
-      @@new_user = false
       current_user = User.find_by(name: name)
       puts "Welcome back, #{name}."
     else
-      @@new_user = true 
       puts "Creating New User"
       current_user = User.create(name: name)
       puts "Welcome #{name}."
@@ -27,7 +34,7 @@ class CliRenderer
   end
 
   def project_groups
-    print_privacy_options(@@new_user)
+    util.print_privacy_options
     option = gets.chomp
     case option
     when "1"
@@ -42,31 +49,31 @@ class CliRenderer
     end
   end
 
-  def list_project(privacy_setting)
+  def list_project(user, privacy_setting)
     case privacy_setting
     when "public"
       Drawing.public_drawings
     when "private"
-      @@user.private_drawings
+      user.private_drawings
     when "collaborative"
-      @@user.collab_drawings
+      user.collab_drawings
     end
   end
 
   def select_project(drawings, privacy_setting)
     puts "#{privacy_setting.upcase} PROJECTS"
-    print_attribute_list(drawings, :title)
+    util.print_attribute_list(drawings, :title)
     if (privacy_setting != "collaborative")
       puts "+ -> Create New Drawing"
     end
     program_choice = gets.chomp
     if program_choice == "+" && private_methods != "collaborative"
-      prompt_new_project(privacy_setting)
+      util.prompt_new_project(privacy_setting)
     elsif (program_choice.to_i)
       if (drawings[program_choice.to_i - 1])
         drawings[program_choice.to_i - 1]
       else
-        select_project(drawings,privacy_setting)
+        select_project(drawings privacy_setting)
       end
     else
       select_project(drawings,privacy_setting)
@@ -88,10 +95,31 @@ class CliRenderer
       drawing.destroy
     when "3"
       add_collaborator(drawing)
-      list_drawing_setting(drawing)
     else
       puts "Invalid Input!"
       list_drawing_setting(drawing)
+    end
+  end
+
+  def add_collaborator(drawing)
+    collab = prompt_collaborator
+    drawing.add_collaborator(collab)
+  end
+
+  def prompt_collaborator
+    print_attribute_list(User.all, :name)
+    collaborator = gets.chomp
+
+    if (collaborator.to_i)
+      if (User.all[collaborator.to_i - 1])
+        User.all[collaborator.to_i - 1]
+      else
+        puts "Invalid Input"
+        prompt_collaborator
+      end
+    else
+      puts "Invalid Input"
+      prompt_collaborator
     end
   end
 end # end of class

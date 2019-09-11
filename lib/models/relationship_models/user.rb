@@ -15,10 +15,6 @@ class User < ActiveRecord::Base
     self.drawings.where(private: "collaborative")
   end
 
-  def hello
-    puts "checking method"
-  end
-
   def create_private_drawing(drawing_title)
     self.drawing.create(title: drawing_title, private: "private")
   end
