@@ -15,12 +15,12 @@ class Cli
     name = gets.chomp
     current_user = nil
 
-    if User.user_exist?(name)
-      current_user = User.find_by(name: name)
+    if User.user_exist?(name.upcase)
+      current_user = User.find_by(name: name.upcase)
       puts "Welcome back, #{name}."
     else
       puts "Creating New User"
-      current_user = User.create(name: name)
+      current_user = User.create(name: name.upcase)
       puts "Welcome #{name}."
     end
     current_user
@@ -38,7 +38,7 @@ class Cli
       "collaborative"
     else
       puts "Invalid key!"
-      project_groups
+      project_groups(util)
     end
   end
 
@@ -89,7 +89,6 @@ class Cli
     puts "=" * 90
     program_choice = gets.chomp
     case program_choice
-
     when "1"
       puts "=" * 90
       puts "Opening Project..."
@@ -102,7 +101,7 @@ class Cli
       session.drawing.destroy
     when "3"
       add_collaborator(session,util)
-      list_project(session)
+      session.user.collab_drawings
     else
       puts "=" * 90
       puts "Invalid Input!"
