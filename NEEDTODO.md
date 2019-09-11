@@ -1,54 +1,16 @@
-## Model Relationships
-* user model 
-  * has many user drawings
-* user_drawing model
-  * belongs to user
-  * belongs to drawing
-* drawing model
-  * has many user_drawing
-  * has many shape
-* shape model
-  * belongs to drawing
+* Drawing Settings
+  * Public
+    * Check Owner
+  * Collab
+    * Check Owner
+    * Add collabortaor should not have self.username
+  * Private
+    * Add collaborator Should not have self.username
 
----
-* drawing
-  * title
-  * can be public or private
----
+* Create Scene Class
+  * login_scene = Scene.new(:login, session)
+  * project_group_scene = Scene.new(:project_groups, session)
+  * scene_manager = SceneManager.new([login_scene, project_group_scene])
+  * when login_scene returns "DONE"
+    * SceneManager.next
 
-* user
-  * self.check_exists?(user)
-  * #private_drawings
-  * #public_drawings
-* cli
-  * #display_projects
-  * #display_settings
-    * open project
-    * delete project
-
-
-
-
-# CLI MINIMUM DONE
-* Collaboration (Higher priority)
-  * [x] Need to add collaborators
-  * [x] Need to add privacy setting: "collaborate" 
-  * [x] Add that to project menu 
-  * Aftrer addeding a collaborative, the user should go back to the project groups 
-  * Only owner can delete collaborative work
-
-
-* Go backwards in menu feature.
-  * Go back to start
-  * (stretch goal) If user types in '..' it'll go back one level.
-  
-* user_drawing
-  * [x] delete name variable when possible
-
-* user
-  * User_name sanitation (i.e. pongo && Pongo should be the same)
-  * Password implementation
-
-* Colors (Low priority)
-  * I really want to add different colors besides red.
-  * Refactor the drawing api

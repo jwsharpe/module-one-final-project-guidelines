@@ -1,7 +1,7 @@
 class Cursor < Square
   attr_accessor :selected_color
 
-  COLORS = ["blue", "green", "red", "yellow"]
+  COLORS = ["blue", "green", "red", "yellow", "white", "black", "purple"]
 
   def initialize
     super(
@@ -28,7 +28,7 @@ class Cursor < Square
   end
 
   def cycle_color
-    @color_index = (@color_index + 1) % 4
+    @color_index = (@color_index + 1) % COLORS.length
 
     self.color = COLORS[@color_index]
     self.selected_color = COLORS[@color_index]

@@ -7,6 +7,8 @@ class Window
 
     on :controller_button_down do |event|
       case event.button
+      when :start
+        Window.close
       when :up
         cursor.size += 20
       when :down
