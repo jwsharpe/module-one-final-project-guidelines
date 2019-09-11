@@ -18,3 +18,4 @@ def prompt_new_project(privacy_setting)
   new_title = gets.chomp
   @@user.drawings.create(title: new_title, private: privacy_setting)
 end
+
