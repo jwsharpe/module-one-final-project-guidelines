@@ -1,9 +1,8 @@
 
 def print_list(list) #helper method to print list
-  list.each_with_index do |drawing, index|
-    puts "#{index + 1} -> #{drawing.title}"
+  list.each_with_index do |element, index|
+    puts "#{index + 1}: #{element.title}"
   end
-  puts "+ -> Create New Drawing"
 end
 
 def privacy_option
