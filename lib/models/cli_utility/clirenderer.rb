@@ -10,16 +10,16 @@ class CliRenderer
     end
   end
 
-  def print_privacy_options(user_status)
+  def print_privacy_options
     puts "Choose option:"
     puts "1. Private Project"
     puts "2. Public Project"
-    puts "3. Collab Project" if user_status == false
+    puts "3. Collab Project" 
   end
 
-  def prompt_new_project(privacy_setting)
+  def prompt_new_project(user, privacy_setting)
     puts "Enter Title:"
     new_title = gets.chomp
-    @@user.drawings.create(title: new_title, private: privacy_setting)
+    user.drawings.create(title: new_title, private: privacy_setting)
   end
 end
