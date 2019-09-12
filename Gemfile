@@ -8,7 +8,4 @@ gem "pry"
 gem "rake"
 gem "require_all"
 gem "ruby2d"
-<<<<<<< HEAD
 gem "colorize"
-=======
->>>>>>> 41cf73c21cf3fdb2381d3cf2224fff61e563ec28

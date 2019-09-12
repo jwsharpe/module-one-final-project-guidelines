@@ -10,10 +10,8 @@ class CliRenderer
   def self.print_attribute_list(list, attr) #helper method to print list
     list.each_with_index do |element, index|
       puts "#{index + 1}: #{element.send(attr)}"
-      puts "b -> Previous Menu"
-      puts "e -> Exit"
-      puts "-" * 40
     end
+    back_and_end_prompt
   end
 
   def self.print_privacy_options
@@ -89,5 +87,11 @@ class CliRenderer
   def self.print_header_with_prompt(msg)
     print_header(msg)
     gets.chomp
+  end
+
+  def self.back_and_end_prompt
+    puts "b -> Previous Menu"
+      puts "e -> Exit"
+      puts "-" * 40
   end
 end
