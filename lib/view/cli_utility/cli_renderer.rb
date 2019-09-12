@@ -35,6 +35,11 @@ class CliRenderer
     gets.chomp
   end
 
+  def self.prompt_user_by_choice(choice)
+    print choice + ":"
+    gets.chomp
+  end
+
   def self.print_header(*texts)
     print_border
     print_args(texts)
