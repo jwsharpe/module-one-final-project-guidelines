@@ -5,6 +5,7 @@ class ProjectScene < Scene
     CliRenderer.print_privacy_header(session.privacy_setting.upcase)
 
     scene_handle_greeting
+    print "Option: "
     program_choice = gets.chomp
 
     case program_choice
