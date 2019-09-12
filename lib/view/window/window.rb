@@ -2,6 +2,7 @@ class Window
   @@close_flag = 0
 
   def self.open(drawing)
+    @@close_flag = 0
     load_shapes(drawing)
     set title: drawing.title
     cursor = Cursor.new
