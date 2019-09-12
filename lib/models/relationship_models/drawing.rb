@@ -16,6 +16,11 @@ class Drawing < ActiveRecord::Base
     self.update(private: "collaborative")
   end
 
+  def remove_collaborator(user)
+    user.drawings.delete(self)
+    self.update(private: "private")
+  end
+
   def collaborators
     self.users
   end
