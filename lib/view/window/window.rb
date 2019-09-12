@@ -8,7 +8,8 @@ class Window
     on :controller_button_down do |event|
       case event.button
       when :start
-        Window.close
+        sleep(2)
+        close
       when :up
         cursor.size += 20
       when :down
@@ -41,7 +42,9 @@ class Window
     }
   end
 
-  def refresh(shape)
+
+
+  def self.refresh(shape)
     remove(shape)
     add(shape)
   end
