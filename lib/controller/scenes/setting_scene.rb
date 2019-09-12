@@ -11,8 +11,10 @@ class SettingScene < Scene
       self.next_scene("project_scene")
     when "3"
       self.next_scene("collaborator_scene")
-    when "back"
+    when "b"
       self.next_scene("project_scene")
+    when "e"
+      self.next_scene("exit_scene")
     else
       CliRenderer.print_invalid_input
       run
