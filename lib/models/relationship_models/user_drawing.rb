@@ -1,6 +1,4 @@
 class UserDrawing < ActiveRecord::Base
-    belongs_to :user 
-    belongs_to :drawing 
-
-
+  belongs_to :user
+  belongs_to :drawing
 end

@@ -2,6 +2,12 @@ require "pry"
 
 class ProjectScene < Scene
   def run
+    User.all.reload
+    UserDrawing.all.reload
+    Drawing.all.reload
+
+    session.drawings = session.user.drawings
+
     scene_handle_greeting
     program_choice = CliRenderer.prompt_user_by_choice("Option")
 
