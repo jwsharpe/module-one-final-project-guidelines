@@ -1,6 +1,7 @@
 class Drawing < ActiveRecord::Base
   has_many :shapes, dependent: :destroy
-  has_many :users, through: :user_drawing
+  has_many :user_drawings
+  has_many :users, through: :user_drawings
 
   def open
     Window.open(self)
@@ -15,8 +16,7 @@ class Drawing < ActiveRecord::Base
     self.update(private: "collaborative")
   end
 
-  def collaborators 
-    self.all.where(private: "collaborative")
+  def collaborators
+    self.users
   end
-
 end

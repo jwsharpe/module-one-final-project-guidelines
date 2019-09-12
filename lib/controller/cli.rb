@@ -10,6 +10,7 @@ class Cli
     collaborator_scene = CollaboratorScene.new
     drawing_scene = DrawingScene.new
     exit_scene = ExitScene.new
+    view_collaborators_scene = ViewCollaboratorsScene.new
 
     cli_scene_manager.add_scene(login_scene)
     cli_scene_manager.add_scene(privacy_scene)
@@ -18,11 +19,8 @@ class Cli
     cli_scene_manager.add_scene(collaborator_scene)
     cli_scene_manager.add_scene(drawing_scene)
     cli_scene_manager.add_scene(exit_scene)
+    cli_scene_manager.add_scene(view_collaborators_scene)
 
     cli_scene_manager.show
   end
 end
-
-
-
-
