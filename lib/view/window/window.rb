@@ -32,6 +32,7 @@ class Window
         x: gamepad.digital_output_x,
         y: gamepad.digital_output_y,
       )
+      Window.close if @@close_flag == 1
     end
 
     show
@@ -41,7 +42,6 @@ class Window
     drawing.shapes.each { |shape|
       ShapeAdapter.build(shape)
     }
-    Window.close if @@close_flag == 1
   end
 
   def self.refresh(shape)
@@ -51,6 +51,7 @@ class Window
 
   def self.close_window
     self.clear
+    sleep(1)
     @@close_flag = 1
   end
 end
