@@ -26,7 +26,7 @@ class CliRenderer
   end
 
   def self.prompt_new_project
-    puts "Enter Title:"
+    print "Enter Title:"
     new_title = gets.chomp
   end
 
@@ -82,11 +82,13 @@ class CliRenderer
       "b -> Previous Menu",
       "e -> Exit"
     )
+    print "Option: "
     gets.chomp
   end
 
   def self.print_header_with_prompt(msg)
     print_header(msg)
+    print "Option: "
     gets.chomp
   end
 
@@ -95,4 +97,5 @@ class CliRenderer
     puts "e -> Exit"
     puts Paint["-" * 40, :bright, :blue]
   end
+
 end
