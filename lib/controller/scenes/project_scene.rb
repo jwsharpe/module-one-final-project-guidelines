@@ -25,8 +25,10 @@ class ProjectScene < Scene
       else
         run
       end
-    elsif program_choice = "back"
+    elsif program_choice == "b"
       self.next_scene("privacy_scene")
+    elsif program_choice == "e"
+      self.next_scene("exit_scene")
     else
       CliRenderer.print_invalid_input
       run

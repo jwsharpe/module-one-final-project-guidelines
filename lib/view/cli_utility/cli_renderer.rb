@@ -1,20 +1,28 @@
 class CliRenderer
   def self.print_greeting
+    puts "=" * 40
     puts "Welcome To Drawing Application"
-    puts "==============================="
+    puts "=" * 40
   end
 
   def self.print_attribute_list(list, attr) #helper method to print list
     list.each_with_index do |element, index|
       puts "#{index + 1}: #{element.send(attr)}"
+      puts "b -> Previous Menu"
+      puts "e -> Exit"
+      puts "-" * 40
     end
   end
 
   def self.print_privacy_options
     puts "Choose option:"
+    puts "-" * 40
     puts "1. Private Project"
     puts "2. Public Project"
     puts "3. Collab Project"
+    puts "b -> Previous Menu"
+    puts "e -> Exit"
+    puts "-" * 40
   end
 
   def self.prompt_new_project
@@ -35,8 +43,9 @@ class CliRenderer
   end
 
   def self.print_privacy_header(privacy)
+    puts "-" * 40
     puts "#{privacy} PROJECTS"
-    puts "^" * 90
+    puts "^" * 40
   end
 
   def self.print_create_drawing
@@ -45,15 +54,18 @@ class CliRenderer
 
   def self.prompt_user_name
     puts "LOGIN : Enter User Name"
+    puts "-" * 40
     name = gets.chomp
   end
 
   def self.greet_returning_user(user)
+    puts "-" * 40
     puts "Welcome back, #{user}."
+    puts "-" * 40
   end
 
   def self.greet_new_user(user)
-    puts "Creating New User"
+    puts "Creating New User....."
     puts "Welcome #{user}"
   end
 
@@ -65,7 +77,9 @@ class CliRenderer
     CliRenderer.print_header(
       "1 -> Open Project (Edit)",
       "2 -> Delete Project",
-      "3 -> Add Collaborator"
+      "3 -> Add Collaborator",
+      "b -> Previous Menu",
+      "e -> Exit"
     )
     gets.chomp
   end
