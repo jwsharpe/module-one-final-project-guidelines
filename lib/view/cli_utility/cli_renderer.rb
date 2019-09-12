@@ -31,6 +31,11 @@ class CliRenderer
     new_title = gets.chomp
   end
 
+  def self.prompt_user_by_choice(choice)
+    print choice + ":"
+    gets.chomp
+  end
+
   def self.print_header(*texts)
     puts Paint["=" * 40, :bright, :blue]
     texts.each do |msg|

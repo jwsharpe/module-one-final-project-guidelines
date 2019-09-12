@@ -13,9 +13,11 @@ class ProjectScene < Scene
       self.next_scene("privacy_scene")
     when "e"
       self.next_scene("exit_scene")
-    when "+" && !is_collaborative?
-      scene_show_create_new_drawing
-      self.next_scene("setting_scene")
+    when "+" 
+      if !is_collaborative?
+       scene_show_create_new_drawing
+       self.next_scene("setting_scene")
+      end
     else
       if (program_choice.to_i > 0)
         session.drawings[program_choice.to_i - 1]
@@ -47,7 +49,7 @@ def scene_save_drawing_to_session_data(session, program_choice)
 end
 
 def scene_handle_greeting
-  if session.drawings
+  if session.drawings.any?
     drawings = session.drawings.where(private: session.privacy_setting)
     CliRenderer.print_attribute_list(drawings, :title)
   else
