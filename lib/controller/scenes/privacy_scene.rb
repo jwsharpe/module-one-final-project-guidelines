@@ -10,6 +10,8 @@ class PrivacyScene < Scene
       session.privacy_setting = "public"
     when "3"
       session.privacy_setting = "collaborative"
+    when "back"
+      self.next_scene("login_scene")
     else
       CliRenderer.print_invalid_input
       run

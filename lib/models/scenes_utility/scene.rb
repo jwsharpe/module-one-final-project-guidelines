@@ -14,4 +14,9 @@ class Scene
     @session.scene_id = scene
     @session
   end
+
+  def go_back_scene(scene) # back scene
+    @session.scene_id = scene
+    @session
+  end
 end # end of class

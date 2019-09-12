@@ -1,8 +1,14 @@
+require 'pry'
+
 class ProjectScene < Scene
   def run
     CliRenderer.print_privacy_header(session.privacy_setting.upcase)
-    drawings = session.drawings.where(private: session.privacy_setting)
-    CliRenderer.print_attribute_list(drawings, :title)
+    if !session.drawings
+      CliRenderer.print_header("No drawing exist! Create New Or Choose Public")
+    else
+      drawings = session.drawings.where(private: session.privacy_setting)
+      CliRenderer.print_attribute_list(drawings, :title)
+    end 
 
     if (session.privacy_setting != "collaborative")
       CliRenderer.print_create_drawing
@@ -25,6 +31,8 @@ class ProjectScene < Scene
         CliRenderer.print_header("Choose Existing Project By Index!")
         run
       end
+    elsif program_choice = "back"
+      self.next_scene("privacy_scene")
     else
       CliRenderer.print_invalid_input
       run
