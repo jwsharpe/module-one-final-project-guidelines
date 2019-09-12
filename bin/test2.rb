@@ -1,1 +1,0 @@
-exec("ruby test.rb")

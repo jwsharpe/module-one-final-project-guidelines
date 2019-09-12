@@ -6,10 +6,13 @@ class PrivacyScene < Scene
     case option
     when "1"
       session.privacy_setting = "private"
+      self.next_scene("project_scene")
     when "2"
       session.privacy_setting = "public"
+      self.next_scene("project_scene")
     when "3"
       session.privacy_setting = "collaborative"
+      self.next_scene("project_scene")
     when "b"
       self.next_scene("login_scene")
     when "e"
@@ -18,7 +21,5 @@ class PrivacyScene < Scene
       CliRenderer.print_invalid_input
       run
     end
-
-    self.next_scene("project_scene")
   end
 end

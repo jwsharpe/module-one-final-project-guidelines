@@ -3,7 +3,7 @@ class SceneManager
   attr_reader :scenes
 
   SCENE_NAMES = ["login_scene", "privacy_scene", "project_scene",
-                 "setting_scene", "collaborator_scene", "drawing_scene", "exit_scene"]
+                 "setting_scene", "collaborator_scene", "drawing_scene", "exit_scene", "view_collaborators_scene"]
 
   def initialize
     @session = Session.new
