@@ -44,11 +44,6 @@ class Window
     Window.close if @@close_flag == 1
   end
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 1fec954914294a38ac007dfc16774ce7118ffdb8
   def self.refresh(shape)
     remove(shape)
     add(shape)
