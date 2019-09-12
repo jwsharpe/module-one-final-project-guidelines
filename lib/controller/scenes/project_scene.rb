@@ -1,34 +1,28 @@
-require 'pry'
+require "pry"
 
 class ProjectScene < Scene
   def run
     CliRenderer.print_privacy_header(session.privacy_setting.upcase)
-    if !session.drawings
-      CliRenderer.print_header("No drawing exist! Create New Or Choose Public")
-    else
+
+    scene_handle_
+    if session.drawings
       drawings = session.drawings.where(private: session.privacy_setting)
       CliRenderer.print_attribute_list(drawings, :title)
-    end 
-
-    if (session.privacy_setting != "collaborative")
-      CliRenderer.print_create_drawing
+    else
+      CliRenderer.print_header("No drawing exist! Create New Or Choose Public")
     end
 
+    CliRenderer.print_create_drawing unless is_collaborative?
     program_choice = gets.chomp
-    if program_choice == "+" && @session.privacy_setting != "collaborative"
-      new_title = CliRenderer.prompt_new_project
-      session.drawing = session.user.drawings.create(
-        title: new_title,
-        private: session.privacy_setting,
-      )
 
+    if program_choice == "+" && !is_collaborative?
+      scene_show_create_new_drawing
       self.next_scene("setting_scene")
     elsif (program_choice.to_i > 0)
       if (drawings[program_choice.to_i - 1])
-        session.drawing = drawings[program_choice.to_i - 1]
+        scene_save_drawing_to_session_data
         self.next_scene("setting_scene")
       else
-        CliRenderer.print_header("Choose Existing Project By Index!")
         run
       end
     elsif program_choice = "back"
@@ -38,4 +32,21 @@ class ProjectScene < Scene
       run
     end
   end
+end
+
+private
+
+def is_collaborative?
+  session.privacy_setting != "collaborative"
+end
+
+def scene_show_create_new_drawing
+  new_title = CliRenderer.prompt_new_project
+  session.drawing = session.user.create_drawing(
+    new_title, session.privacy_setting
+  )
+end
+
+def scene_save_drawing_to_session_data
+  session.drawing = drawings[program_choice.to_i - 1]
 end
