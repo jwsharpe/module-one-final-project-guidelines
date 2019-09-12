@@ -17,6 +17,6 @@ class ViewCollaboratorsScene < Scene
 
   private def user_list
     list = session.drawing.collaborators
-    list.select { |user| user != self.session.user }
+    list.select { |user| user != session.user }
   end
 end
