@@ -1,3 +1,5 @@
+require 'colorize'
+
 class CliRenderer
   def self.print_greeting
     puts "=" * 40
@@ -60,7 +62,7 @@ class CliRenderer
 
   def self.greet_returning_user(user)
     puts "-" * 40
-    puts "Welcome back, #{user}."
+    puts "Welcome back, #{user}.".colorize(:blue)
     puts "-" * 40
   end
 
