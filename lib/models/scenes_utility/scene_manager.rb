@@ -22,6 +22,7 @@ class SceneManager
   private def run_scene(scene_name)
     #sleep(0.7)
     #system "clear"
+    CliRenderer.print_spacer
     index = SCENE_NAMES.index(scene_name)
     return if !index
     session = scenes[index].run

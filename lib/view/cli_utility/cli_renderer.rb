@@ -7,28 +7,32 @@ class CliRenderer
     puts Paint["=" * 40, :bright, :blue]
   end
 
-  def self.print_attribute_list(list, attr) #helper method to print list
-    list.each_with_index do |element, index|
-      puts "#{index + 1}: #{element.send(attr)}"
-    end
-    back_and_end_prompt
+  def self.print_spacer
+    puts ""
+    puts "-" * 25
+    puts ""
+  end
+
+  def self.print_attribute_list(list, attrib) #helper method to print list
+    print_args(
+      list.each_with_index.map { |element, index| "#{index + 1}: #{element.send(attrib)}" }
+    )
   end
 
   def self.print_privacy_options
-    puts Paint["-" * 40, :bright, :blue]
-    puts "Choose option:"
-    puts Paint["-" * 40, :bright, :blue]
-    puts "1. Private Project"
-    puts "2. Public Project"
-    puts "3. Collab Project"
-    puts "b -> Previous Menu"
-    puts "e -> Exit"
-    puts Paint["-" * 40, :bright, :blue]
+    print_header("Privacy Settings")
+    print_header(
+      "1. Private Project",
+      "2. Public Projects",
+      "3. Collab Projects",
+      back_string,
+      end_string
+    )
   end
 
   def self.prompt_new_project
-    print "Enter Title:"
-    new_title = gets.chomp
+    print "Enter Title: "
+    gets.chomp
   end
 
   def self.prompt_user_by_choice(choice)
@@ -37,38 +41,44 @@ class CliRenderer
   end
 
   def self.print_header(*texts)
-    puts Paint["=" * 40, :bright, :blue]
+    print_border
+    print_args(texts)
+    print_border
+  end
+
+  def self.print_args(*texts)
     texts.each do |msg|
       puts msg
     end
-    puts Paint["=" * 40, :bright, :blue]
   end
 
   def self.print_invalid_input
     print_header("Invalid Input!")
   end
 
-  def self.print_privacy_header(privacy)
+  def self.print_border
     puts Paint["-" * 40, :bright, :blue]
-    puts "#{privacy} PROJECTS"
-    puts Paint["^" * 40, :blue]
+  end
+
+  def self.print_privacy_header(privacy)
+    print_header("#{privacy.capitalize} Projects")
   end
 
   def self.print_create_drawing
-    puts "+ -> Create New Drawing"
+    puts "+. Create New Drawing"
   end
 
   def self.prompt_user_name
     puts "LOGIN : Enter User Name"
-    puts Paint["-" * 40, :bright, :blue]
+    print_border
     print "Username: "
-    name = gets.chomp
+    gets.chomp
   end
 
   def self.greet_returning_user(user)
-    puts Paint["-" * 40, :bright, :blue]
+    print_border
     puts Paint["Welcome back, #{user}.", :green]
-    puts Paint["-" * 40, :bright, :blue]
+    print_border
   end
 
   def self.greet_new_user(user)
@@ -82,26 +92,37 @@ class CliRenderer
 
   def self.prompt_program_choice
     CliRenderer.print_header(
-      "1 -> Open Project (Edit)",
-      "2 -> Delete Project",
-      "3 -> Add Collaborator",
-      "b -> Previous Menu",
-      "e -> Exit"
+      "1. Open Project (Edit)",
+      "2. Delete Project",
+      "3. Add Collaborator",
+      "4. Remove Collaborator",
+      back_string,
+      end_string
     )
     print "Option: "
     gets.chomp
   end
 
-  def self.print_header_with_prompt(msg)
-    print_header(msg)
-    print "Option: "
+  def self.prompt_user_by_choice(choice)
+    print "#{choice}: "
     gets.chomp
   end
 
-  def self.back_and_end_prompt
-    puts "b -> Previous Menu"
-    puts "e -> Exit"
-    puts Paint["-" * 40, :bright, :blue]
+  def self.print(msg)
+    puts msg
   end
 
+  def self.print_back_and_end
+    puts back_string
+    puts end_string
+  end
+
+  private
+
+  def self.back_string
+    "b. Previous Menu"
+  end
+  def self.end_string
+    "e. Exit"
+  end
 end
