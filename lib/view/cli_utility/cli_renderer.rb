@@ -1,10 +1,10 @@
-require 'colorize'
+require 'paint'
 
 class CliRenderer
   def self.print_greeting
-    puts "=" * 40
-    puts "Welcome To Drawing Application"
-    puts "=" * 40
+    puts Paint["=" * 40, :bright, :blue]
+    puts Paint["Welcome To Drawing Application", :bright, :red]
+    puts Paint["=" * 40, :bright, :blue]
   end
 
   def self.print_attribute_list(list, attr) #helper method to print list
@@ -16,13 +16,13 @@ class CliRenderer
 
   def self.print_privacy_options
     puts "Choose option:"
-    puts "-" * 40
+    puts Paint["-" * 40, :bright, :blue]
     puts "1. Private Project"
     puts "2. Public Project"
     puts "3. Collab Project"
     puts "b -> Previous Menu"
     puts "e -> Exit"
-    puts "-" * 40
+    puts Paint["-" * 40, :bright, :blue]
   end
 
   def self.prompt_new_project
@@ -31,11 +31,11 @@ class CliRenderer
   end
 
   def self.print_header(*texts)
-    puts "=" * 90
+    puts Paint["=" * 40, :bright, :blue]
     texts.each do |msg|
       puts msg
     end
-    puts "=" * 90
+    puts Paint["=" * 40, :bright, :blue]
   end
 
   def self.print_invalid_input
@@ -43,9 +43,9 @@ class CliRenderer
   end
 
   def self.print_privacy_header(privacy)
-    puts "-" * 40
+    puts Paint["-" * 40, :bright, :blue]
     puts "#{privacy} PROJECTS"
-    puts "^" * 40
+    puts Paint["^" * 40, :blue]
   end
 
   def self.print_create_drawing
@@ -54,14 +54,14 @@ class CliRenderer
 
   def self.prompt_user_name
     puts "LOGIN : Enter User Name"
-    puts "-" * 40
+    puts Paint["-" * 40, :bright, :blue]
     name = gets.chomp
   end
 
   def self.greet_returning_user(user)
-    puts "-" * 40
-    puts "Welcome back, #{user}.".colorize(:blue)
-    puts "-" * 40
+    puts Paint["-" * 40, :bright, :blue]
+    puts Paint["Welcome back, #{user}.", :green]
+    puts Paint["-" * 40, :bright, :blue]
   end
 
   def self.greet_new_user(user)
@@ -92,6 +92,6 @@ class CliRenderer
   def self.back_and_end_prompt
     puts "b -> Previous Menu"
       puts "e -> Exit"
-      puts "-" * 40
+      puts Paint["-" * 40, :bright, :blue]
   end
 end
