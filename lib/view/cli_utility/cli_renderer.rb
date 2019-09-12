@@ -69,4 +69,9 @@ class CliRenderer
     )
     gets.chomp
   end
+
+  def self.print_header_with_prompt(msg)
+    print_header(msg)
+    gets.chomp
+  end
 end

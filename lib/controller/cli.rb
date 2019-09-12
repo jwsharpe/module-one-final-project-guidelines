@@ -20,12 +20,5 @@ class Cli
     cli_scene_manager.add_scene(exit_scene)
 
     cli_scene_manager.show
-
-    # session = login_scene.run # return user
-    # session = privacy_scene.run # return string e.i. "private"
-    # session = projects_scene.run
-    # session = settings_scene.run
-    # session = collaborator_scene.run
-    # binding.pry
   end
 end
