@@ -1,8 +1,7 @@
 class PrivacyScene < Scene
   def run
     CliRenderer.print_privacy_options
-    print "Option: "
-    option = gets.chomp
+    option = CliRenderer.prompt_user_by_choice("Option")
 
     case option
     when "1"

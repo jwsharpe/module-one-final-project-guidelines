@@ -1,9 +1,9 @@
 class LoginScene < Scene
   def run
-    CliRenderer.print_greeting # greet msg
+    CliRenderer.print_greeting
+    CliRenderer.print_header("LOGIN: Enter User Name")
+    name = CliRenderer.prompt_user_by_choice("Username") # greet msg
 
-    current_user = nil
-    name = CliRenderer.prompt_user_name
     if User.user_exist?(name.upcase)
       current_user = User.find_by(name: name.upcase)
       CliRenderer.greet_returning_user(name)
