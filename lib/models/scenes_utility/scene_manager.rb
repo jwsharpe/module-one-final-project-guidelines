@@ -20,7 +20,7 @@ class SceneManager
   end
 
   private def run_scene(scene_name)
-    sleep(500)
+    sleep(0.75)
     system "clear"
     index = SCENE_NAMES.index(scene_name)
     return if !index

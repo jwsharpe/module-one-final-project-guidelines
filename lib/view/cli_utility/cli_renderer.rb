@@ -1,4 +1,4 @@
-require 'paint'
+require "paint"
 
 class CliRenderer
   def self.print_greeting
@@ -55,6 +55,7 @@ class CliRenderer
   def self.prompt_user_name
     puts "LOGIN : Enter User Name"
     puts Paint["-" * 40, :bright, :blue]
+    print "Username: "
     name = gets.chomp
   end
 
@@ -91,7 +92,7 @@ class CliRenderer
 
   def self.back_and_end_prompt
     puts "b -> Previous Menu"
-      puts "e -> Exit"
-      puts Paint["-" * 40, :bright, :blue]
+    puts "e -> Exit"
+    puts Paint["-" * 40, :bright, :blue]
   end
 end

@@ -2,7 +2,6 @@ class Cli
   def run_program
     cli_scene_manager = SceneManager.new
 
-    CliRenderer.print_greeting # greet msg
     login_scene = LoginScene.new
     privacy_scene = PrivacyScene.new
     projects_scene = ProjectScene.new
