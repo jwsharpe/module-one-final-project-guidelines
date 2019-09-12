@@ -1,4 +1,6 @@
 class Window
+  @@close_flag = 0
+
   def self.open(drawing)
     load_shapes(drawing)
     set title: drawing.title
@@ -8,7 +10,7 @@ class Window
     on :controller_button_down do |event|
       case event.button
       when :start
-        Window.close
+        close_window
       when :up
         cursor.size += 20
       when :down
@@ -39,10 +41,16 @@ class Window
     drawing.shapes.each { |shape|
       ShapeAdapter.build(shape)
     }
+    Window.close if @@close_flag == 1
   end
 
-  def refresh(shape)
+  def self.refresh(shape)
     remove(shape)
     add(shape)
+  end
+
+  def self.close_window
+    self.clear
+    @@close_flag = 1
   end
 end

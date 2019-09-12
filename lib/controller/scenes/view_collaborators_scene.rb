@@ -1,7 +1,7 @@
 class ViewCollaboratorsScene < Scene
   def run
     binding.pry
-    CliRenderer.print_attribute_list(session.drawing.collaborators, :name)
+    CliRenderer.print_attribute_list(user_list, :name)
     CliRenderer.back_and_end_prompt
     program_choice = gets.chomp
     case program_choice
@@ -16,6 +16,7 @@ class ViewCollaboratorsScene < Scene
   end
 
   private def user_list
-    User.all.select { |user| user != self.session.user }
+    list = session.drawing.collaborators
+    list.select { |user| user != self.session.user }
   end
 end
