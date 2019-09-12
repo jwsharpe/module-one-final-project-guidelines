@@ -48,12 +48,30 @@ class CliRenderer
     name = gets.chomp
   end
 
-  def greet_returning_user(user)
+  def self.greet_returning_user(user)
     puts "Welcome back, #{user}."
   end
 
-  def greet_new_user(user)
+  def self.greet_new_user(user)
     puts "Creating New User"
     puts "Welcome #{user}"
+  end
+
+  def self.print_goodbye
+    print_header("Goodbye!")
+  end
+
+  def self.prompt_program_choice
+    CliRenderer.print_header(
+      "1 -> Open Project (Edit)",
+      "2 -> Delete Project",
+      "3 -> Add Collaborator"
+    )
+    gets.chomp
+  end
+
+  def self.print_header_with_prompt(msg)
+    print_header(msg)
+    gets.chomp
   end
 end

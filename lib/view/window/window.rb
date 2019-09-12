@@ -17,10 +17,7 @@ class Window
         cursor.cycle_color
       when :a
         ShapeAdapter.build_shape_from_cursor(cursor, drawing)
-        remove(cursor)
-        add(cursor)
-      else
-        p event.button
+        refresh(cursor)
       end
     end
 
@@ -42,5 +39,10 @@ class Window
     drawing.shapes.each { |shape|
       ShapeAdapter.build(shape)
     }
+  end
+
+  def refresh(shape)
+    remove(shape)
+    add(shape)
   end
 end

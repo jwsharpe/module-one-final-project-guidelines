@@ -1,25 +1,23 @@
 class CollaboratorScene < Scene
   def run
     collab = prompt_collaborator
-    self.session.drawing.add_collaborator(collab)
-    session
+    session.drawing.add_collaborator(collab)
+    self.next_scene("setting_scene")
   end
 
   def prompt_collaborator
     CliRenderer.print_attribute_list(user_list, :name)
-    CliRenderer.print_header("Choose User by Index:")
-    collaborator = gets.chomp
-
-    if (collaborator.to_i > 0)
-      if (user_list[collaborator.to_i - 1])
-        user_list[collaborator.to_i - 1]
+    collaborator = CliRenderer.print_header_with_prompt("Choose User by Index:")
+    colab_index = collaborator.to_i
+    if (colab_index > 0)
+      if (user_list[colab_index - 1])
+        user_list[colab_index - 1]
       else
         CliRenderer.print_invalid_input
         prompt_collaborator
       end
     else
       CliRenderer.print_invalid_input
-
       prompt_collaborator
     end
   end
