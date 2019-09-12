@@ -52,6 +52,7 @@ def scene_handle_greeting
     CliRenderer.print_attribute_list(drawings, :title)
   else
     CliRenderer.print_header("No drawing exist! Create New Or Choose Public")
+    CliRenderer.back_and_end_prompt
   end
 
   CliRenderer.print_create_drawing unless is_collaborative?

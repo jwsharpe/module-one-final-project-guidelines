@@ -15,6 +15,7 @@ class CliRenderer
   end
 
   def self.print_privacy_options
+    puts Paint["-" * 40, :bright, :blue]
     puts "Choose option:"
     puts Paint["-" * 40, :bright, :blue]
     puts "1. Private Project"
