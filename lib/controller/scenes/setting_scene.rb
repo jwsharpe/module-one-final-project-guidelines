@@ -11,7 +11,7 @@ class SettingScene < Scene
       self.next_scene("project_scene")
     when "3"
       self.next_scene("collaborator_scene")
-    when "4"
+    when "4" # && session.drawing.private == "collaborative"
       self.next_scene("view_collaborators_scene")
     when "b"
       self.next_scene("project_scene")

@@ -20,10 +20,11 @@ class SceneManager
   end
 
   private def run_scene(scene_name)
+    sleep(500)
+    system "clear"
     index = SCENE_NAMES.index(scene_name)
     return if !index
     session = scenes[index].run
     run_scene(session.scene_id)
   end
-  
 end
