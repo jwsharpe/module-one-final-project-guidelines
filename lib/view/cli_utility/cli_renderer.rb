@@ -3,7 +3,7 @@ require "paint"
 class CliRenderer
   def self.print_greeting
     puts Paint["=" * 40, :bright, :blue]
-    puts Paint["Welcome To Drawing Application", :bright, :red]
+    puts Paint["\nWelcome To Drawing Application\n", :bright, :red]
     puts Paint["=" * 40, :bright, :blue]
   end
 
@@ -20,7 +20,8 @@ class CliRenderer
   end
 
   def self.print_privacy_options
-    print_header("Privacy Settings")
+    print_border
+    print_header_with_color("Privacy Settings")
     print_header(
       "1. Private Project",
       "2. Public Projects",
@@ -35,9 +36,15 @@ class CliRenderer
     gets.chomp
   end
 
-  def self.prompt_user_by_choice(choice)
-    print choice + ":"
-    gets.chomp
+  # def self.prompt_user_by_choice(choice)
+  #   print choice + ":"
+  #   gets.chomp
+  # end
+
+  def self.print_header_with_color(heading)
+    print_border
+    puts Paint[heading,:green]
+    print_border
   end
 
   def self.print_header(*texts)
@@ -61,7 +68,7 @@ class CliRenderer
   end
 
   def self.print_privacy_header(privacy)
-    print_header("#{privacy.capitalize} Projects")
+    print_header_with_color("#{privacy.capitalize} Projects")
   end
 
   def self.print_create_drawing
@@ -69,21 +76,19 @@ class CliRenderer
   end
 
   def self.prompt_user_name
-    puts "LOGIN : Enter User Name"
-    print_border
-    print "Username: "
-    gets.chomp
+    print_header_with_color("LOGIN : Enter User Name")
+    prompt_user_by_choice("Username:")
+    # print "Username: "
+    # gets.chomp
   end
 
   def self.greet_returning_user(user)
     print_border
     puts Paint["Welcome back, #{user}.", :green]
-    print_border
   end
 
   def self.greet_new_user(user)
-    puts "Creating New User....."
-    puts "Welcome #{user}"
+    self.print_header("Creating New User.....","Welcome #{user}")
   end
 
   def self.print_goodbye
@@ -99,12 +104,13 @@ class CliRenderer
       back_string,
       end_string
     )
-    print "Option: "
-    gets.chomp
+    prompt_user_by_choice("Option:")
+    # print "Option: "
+    # gets.chomp
   end
 
   def self.prompt_user_by_choice(choice)
-    print "#{choice}: "
+    print choice + ":"
     gets.chomp
   end
 

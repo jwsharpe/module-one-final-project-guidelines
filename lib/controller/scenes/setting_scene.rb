@@ -1,6 +1,6 @@
 class SettingScene < Scene
   def run
-    CliRenderer.print_header("Project: #{session.drawing.title}")
+    CliRenderer.print_header_with_color("Project: #{session.drawing.title}")
     program_choice = CliRenderer.prompt_program_choice
     case program_choice
     when "1"
@@ -13,7 +13,7 @@ class SettingScene < Scene
     when "3"
       self.next_scene("collaborator_scene")
     when "4"
-      if (session.privacy_setting == "collaborative")
+      if session.privacy_setting == "collaborative"
         self.next_scene("view_collaborators_scene")
       else
         CliRenderer.print_invalid_input

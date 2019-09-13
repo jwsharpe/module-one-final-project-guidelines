@@ -8,11 +8,7 @@ class CollaboratorScene < Scene
 
   def prompt_collaborator
     CliRenderer.print_attribute_list(user_list, :name)
-<<<<<<< HEAD
-    
-=======
     CliRenderer.print_back_and_end
->>>>>>> 69a103bf7234dbb9e3459be449dbb51571d16dfa
     collaborator = CliRenderer.prompt_user_by_choice("Choose User by Index")
 
     case collaborator
@@ -37,18 +33,10 @@ class CollaboratorScene < Scene
   end
 
   private def user_list
-<<<<<<< HEAD
-      User.all.select { |user|
-         if !session.drawing.collaborators.include?(user) 
-          user 
-         end
-      }
-=======
     User.all.select { |user|
       !session.drawing.collaborators.reload.any? { |collab|
         collab == user
       }
     }
->>>>>>> 69a103bf7234dbb9e3459be449dbb51571d16dfa
   end
 end
