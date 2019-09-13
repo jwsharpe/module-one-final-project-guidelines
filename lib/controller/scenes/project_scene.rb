@@ -6,7 +6,7 @@ class ProjectScene < Scene
     UserDrawing.all.reload
     Drawing.all.reload
 
-    session.drawings = session.user.drawings #???
+    session.drawings = session.user.drawings.reload #???
 
     scene_handle_greeting
     program_choice = CliRenderer.prompt_user_by_choice("Option")

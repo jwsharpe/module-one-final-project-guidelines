@@ -1,12 +1,13 @@
 class ShapeAdapter
   include Renderable
   def self.build(db_shape)
-    Square.new(
+    temp = Square.new(
       x: db_shape.x,
       y: db_shape.y,
-      color: db_shape.color,
       size: db_shape.size,
     )
+    color = Color.new(db_shape.color)
+    temp.color = color
   end
 
   def self.build_shape_from_cursor(cursor, drawing)

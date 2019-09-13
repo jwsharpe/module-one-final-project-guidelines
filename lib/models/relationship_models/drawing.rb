@@ -18,7 +18,7 @@ class Drawing < ActiveRecord::Base
 
   def remove_collaborator(user)
     user.drawings.delete(self)
-    self.update(private: "private") if users.length == 1
+    self.update(private: "private") if self.users.reload.length == 1
   end
 
   def collaborators
