@@ -2,9 +2,17 @@ require "paint"
 
 class CliRenderer
   def self.print_greeting
-    puts Paint["=" * 40, :bright, :blue]
-    puts Paint["\nWelcome To Drawing Application\n", [10, 250, 90]]
-    puts Paint["=" * 40, :bright, :blue]
+    bar = ProgressBar.new(50,:bar, :percentage)
+    50.times do
+      sleep 0.05
+      bar.increment!
+    end
+    # puts Paint["=" * 40, :bright, :blue]
+    # puts Paint["\nWelcome To Drawing Application\n", :red, :bright, :underline]
+    # puts Paint["=" * 40, :bright, :blue]
+    pastel = Pastel.new
+    font = TTY::Font.new(:doom)
+    puts pastel.red(font.write("WELCOME"))
   end
 
   def self.print_spacer
@@ -42,8 +50,10 @@ class CliRenderer
   # end
 
   def self.print_header_with_color(heading)
+    pastel = Pastel.new
     print_border
-    puts Paint[heading,[242, 238, 12]]
+    puts pastel.green(heading)
+    # puts Paint[heading,:green]
     print_border
   end
 
@@ -110,7 +120,7 @@ class CliRenderer
   end
 
   def self.prompt_user_by_choice(choice)
-    print Paint[choice + ":",[242, 238, 12]]
+    print Paint[choice + ":",:italic, :encircle, :rapid_blink, :overline]
     gets.chomp
   end
 

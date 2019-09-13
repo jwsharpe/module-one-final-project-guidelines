@@ -9,3 +9,6 @@ gem "rake"
 gem "require_all"
 gem "ruby2d"
 gem "paint"
+gem "progress_bar"
+gem 'tty-font'
+gem 'pastel'
