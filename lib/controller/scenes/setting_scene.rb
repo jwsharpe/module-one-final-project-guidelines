@@ -1,5 +1,6 @@
 class SettingScene < Scene
   def run
+    session.privacy_setting = session.drawing.private
     CliRenderer.print_header("Project: #{session.drawing.title}")
     program_choice = CliRenderer.prompt_program_choice
     case program_choice
