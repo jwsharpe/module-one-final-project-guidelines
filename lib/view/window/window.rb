@@ -1,7 +1,7 @@
-class Window
+class DrawingWindow < Window
   @@close_flag = 0
 
-  def self.open(drawing)
+  def self.open_drawing(drawing)
     @@close_flag = 0
     load_shapes(drawing)
     set title: drawing.title
