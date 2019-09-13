@@ -14,7 +14,7 @@ class SettingScene < Scene
     when "3"
       self.next_scene("collaborator_scene")
     when "4"
-      if (session.privacy_setting == "collaborative")
+      if session.privacy_setting == "collaborative"
         self.next_scene("view_collaborators_scene")
       else
         CliRenderer.print_invalid_input
