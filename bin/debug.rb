@@ -1,2 +1,2 @@
 require_relative "../config/environment"
-Drawing.all.first.open
+Drawing.all.first.open_drawing

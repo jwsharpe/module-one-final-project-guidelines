@@ -3,8 +3,8 @@ class Drawing < ActiveRecord::Base
   has_many :user_drawings
   has_many :users, through: :user_drawings
 
-  def open
-    Window.open(self)
+  def open_drawing
+    DrawingWindow.open_drawing(self)
   end
 
   def self.public_drawings
