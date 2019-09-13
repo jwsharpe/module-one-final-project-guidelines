@@ -3,7 +3,7 @@ require "paint"
 class CliRenderer
   def self.print_greeting
     puts Paint["=" * 40, :bright, :blue]
-    puts Paint["\nWelcome To Drawing Application\n", :bright, :red]
+    puts Paint["\nWelcome To Drawing Application\n", [10, 250, 90]]
     puts Paint["=" * 40, :bright, :blue]
   end
 
@@ -43,7 +43,7 @@ class CliRenderer
 
   def self.print_header_with_color(heading)
     print_border
-    puts Paint[heading,:green]
+    puts Paint[heading,[242, 238, 12]]
     print_border
   end
 
@@ -84,7 +84,7 @@ class CliRenderer
 
   def self.greet_returning_user(user)
     print_border
-    puts Paint["Welcome back, #{user}.", :green]
+    puts Paint["Welcome back, #{user}.", :inverse]
   end
 
   def self.greet_new_user(user)
@@ -92,7 +92,7 @@ class CliRenderer
   end
 
   def self.print_goodbye
-    print_header("Goodbye!")
+    print_header_with_color("Goodbye!")
   end
 
   def self.prompt_program_choice
@@ -110,7 +110,7 @@ class CliRenderer
   end
 
   def self.prompt_user_by_choice(choice)
-    print choice + ":"
+    print Paint[choice + ":",[242, 238, 12]]
     gets.chomp
   end
 
