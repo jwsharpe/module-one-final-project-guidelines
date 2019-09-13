@@ -23,5 +23,6 @@ class Drawing < ActiveRecord::Base
 
   def collaborators
     self.users
+    #binding.pry
   end
 end

@@ -7,6 +7,7 @@ class CollaboratorScene < Scene
 
   def prompt_collaborator
     CliRenderer.print_attribute_list(user_list, :name)
+    
     collaborator = CliRenderer.prompt_user_by_choice("Choose User by Index")
     colab_index = collaborator.to_i
     if (colab_index > 0)
@@ -23,6 +24,10 @@ class CollaboratorScene < Scene
   end
 
   private def user_list
-    User.all.select { |user| user != session.drawing.collaborators }
+      User.all.select { |user|
+         if !session.drawing.collaborators.include?(user) 
+          user 
+         end
+      }
   end
 end
