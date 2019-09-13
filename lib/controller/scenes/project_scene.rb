@@ -42,16 +42,8 @@ private
 def scene_handle_greeting
   CliRenderer.print_privacy_header(session.privacy_setting)
   CliRenderer.print_border
-<<<<<<< HEAD
-  if session.drawings
-    privacy_drawings = session.drawings.where(private: session.privacy_setting)
-  else
-    CliRenderer.print("No drawings exist! Create New or Go Back.")
-  end
-=======
 
   privacy_drawings = session.drawings.where(private: session.privacy_setting) rescue []
->>>>>>> 69a103bf7234dbb9e3459be449dbb51571d16dfa
 
   if privacy_drawings.any?
     CliRenderer.print_attribute_list(privacy_drawings, :title)
