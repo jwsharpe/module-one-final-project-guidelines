@@ -42,8 +42,11 @@ private
 def scene_handle_greeting
   CliRenderer.print_privacy_header(session.privacy_setting)
   CliRenderer.print_border
-
-  privacy_drawings = session.drawings.where(private: session.privacy_setting) rescue []
+  if session.privacy_setting == "public"
+    privacy_drawings = Drawing.all.where(private: :public) rescue []
+  else 
+    privacy_drawings = session.drawings.where(private: session.privacy_setting) rescue []
+  end
 
   if privacy_drawings.any?
     CliRenderer.print_attribute_list(privacy_drawings, :title)
